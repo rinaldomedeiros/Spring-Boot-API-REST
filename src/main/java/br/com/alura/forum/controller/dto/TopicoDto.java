@@ -1,8 +1,6 @@
 package br.com.alura.forum.controller.dto;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 
@@ -21,16 +19,19 @@ public class TopicoDto {
 		this.mensagem = topico.getMensagem();
 		this.dataCriacao = topico.getDataCriacao();
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
+
 	public String getTitulo() {
 		return titulo;
 	}
+
 	public String getMensagem() {
 		return mensagem;
 	}
+
 	public LocalDateTime getDataCriacao() {
 		return dataCriacao;
 	}
@@ -38,4 +39,5 @@ public class TopicoDto {
 	public static Page<TopicoDto> converter(Page<Topico> topicos) {
 		return topicos.map(TopicoDto::new);
 	}
+
 }

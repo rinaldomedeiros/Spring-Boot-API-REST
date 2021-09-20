@@ -14,7 +14,6 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Service
 public class TokenService {
 	
-	
 	@Value("${forum.jwt.expiration}")
 	private String expiration;
 	
@@ -34,8 +33,8 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
-
-	public boolean validaToken(String token) {
+	
+	public boolean isTokenValido(String token) {
 		try {
 			Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token);
 			return true;
@@ -47,7 +46,6 @@ public class TokenService {
 	public Long getIdUsuario(String token) {
 		Claims claims = Jwts.parser().setSigningKey(this.secret).parseClaimsJws(token).getBody();
 		return Long.parseLong(claims.getSubject());
-		
 	}
 
 }
